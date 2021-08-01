@@ -1,0 +1,13 @@
+;----Effects box auto Type----
+#singleinstance force
+#ifwinactive ahk_exe adobe premiere pro.exe
+
+^e::findbox("")
+
+findbox(theText){
+sendinput, ^+!7
+sendinput, ^\
+sendinput, +{backspace}
+sleep 10
+sendinput, %theText%
+}
