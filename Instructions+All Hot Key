@@ -10,6 +10,12 @@ For applying auto transitions
    --empty video-audio Track 3 when applying auto transitions
 
 
+;***********Premiere Shortcuts To Change***************************************
+CTRL ALT SHIFT K -  Shuttle Stop.
+Send ^+!7 ;CTRL SHIFT ALT 7 --- you must set this in premiere's keyboard shortcuts menu to the "effects" panel
+Send ^b ;CTRL B -- set in premiere to "select find box"
+;***********Premiere Shortcuts To Change***************************************
+
 
 
 ;***********Edit and Reload***************************************
