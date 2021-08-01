@@ -1,0 +1,17 @@
+;-----start(For creating new project folders windows explorer)-----
+#IfWinActive ahk_class CabinetWClass
+^!numpad0::
+
+CreateFolder("03 Graphics and other assets")
+CreateFolder("01 Project Files")
+CreateFolder("04 Music and SFX")
+CreateFolder("02 Footage and Images")
+CreateFolder("05 Exports")
+
+CreateFolder(FolderName) {
+	Send, ^+n
+	Send, %FolderName%
+	Send, {Enter}
+	Sleep 500
+	}
+;-----end(For creating new project folders windows explorer)-----
