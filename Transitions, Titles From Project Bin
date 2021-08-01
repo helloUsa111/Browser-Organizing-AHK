@@ -1,0 +1,115 @@
+;_____Start Auto Intsert From Project Panel for transitions------
+
+;Lock video and audio tracks, and empty video-audio Track 3 when applying auto transitions
+
+F5::insertTRn("01_Lightleaks")
+F6::insertTRn("02_ZoomIn")
+F7::insertTRn("03_Zoomout")
+F8::insertTRn("04_PanUp")
+F9::insertTRn("05_PanDown")
+F10::insertTRn("06_PanRight")
+F11::insertTRn("07_PanLeft")
+^!numpad1::insertTRn("08_Camera01")
+^!numpad2::insertTRn("09_Camera02")
+^!numpad3::insertTRn("10_Glitch_Invert")
+^!numpad4::insertTRn("12_Glitch_BadSignal")
+^!numpad5::insertTRn("14_Glitch_Magnify_smooth")
+F1::insertTRn("UsamaT1")
+F2::insertTRn("UsamaT2")
+F3::insertTRn("UsamaT3")
+F4::insertTRn("UsamaT4")
+^F1::insertTRn("UsamaP1")
+^F2::insertTRn("UsamaP2")
+^F3::insertTRn("UsamaP3")
+^F4::insertTRn("UsamaP4")
+^+F1::insertTRn("UsamaLT1")
+^+F2::insertTRn("UsamaLT2")
+^+F3::insertTRn("UsamaQt1")
+^+F4::insertTRn("UsamaQt2")
+^+F5::insertTRn("UsamaQt3")
+
+#IfWinActive ahk_exe Adobe Premiere Pro.exe
+insertTRn(leSound)
+{
+ifWinNotActive ahk_exe Adobe Premiere Pro.exe
+	goto sfxEnding
+;keyShower(leSound, "insertTRn")
+if IsFunc("Keyshower") {
+	Func := Func("Keyshower")
+	RetVal := Func.Call(leSound, "insertTRn") 
+}
+CoordMode, mouse, Screen
+CoordMode, pixel, Screen
+coordmode, Caret, screen
+
+
+BlockInput, mouse
+blockinput, MouseMove
+BlockInput, On
+SetKeyDelay, 0 ;for instant writing of text
+MouseGetPos, xpos, ypos
+send ^+x ;ctrl shift x -- shortcut in premiere for "remove in/out points.
+sleep 30
+send ^+9 ;ctrl shift 6 - source assignment preset 4. (sets it to A3.)
+sleep 30
+; Send ^!+1 ;premiere shortcut to open the "project" panel, which is actually a bin. Only ONE bin is highlightable in this way.
+; ;Send F11
+; sleep 100
+;msgbox, you in the panel now?
+send ^!+1 ;CTRL ALT SHIFT 1 -- ;shortcut for application>window>project (highlights a single bin. In my case, it's on my left monitor.)
+tooltip, waiting for premiere to select that bin....
+sleep 40
+;msgbox how about naow?
+Send ^b ;CTRL B -- set this in premiere's shortcuts panel to "select find box." Make sure there are NO OTHER conflicting shortcuts on this key, like "create new bin," which would stop it from working.
+; send +{backspace} ;to delete anything that might be written in the bin, so that the caret coordinates are always accurate.
+
+;msgbox, okay now what
+Send %leSound% ;types in the name of the sound effect you want - should do so instantaneously.
+tooltip, waiting for premiere to load......
+send ^+9 ;source assignment preset 4, again.
+sleep 600 ;we are waiting for the search to complete....
+;sleep 400 ;we are still waiting for the search to complete....
+MouseMove, 100, 200, 0 ;moves the mouse to the expected location of the bin that becomes highlighted from the "project" keyboard shortcut command in Premiere.
+;msgbox, wheres de mouse?
+; MouseGetPos, lol, lel
+; PixelGetColor, zecolor, lol, lel, alt slow rgb
+; msgbox, %zecolor% 
+MouseClick, left
+tooltip, CLICK!!!
+sleep 10
+send ^+9 ;source assignment preset 4, again.
+sleep 5
+Send ^b ;CTRL B -- set this in premiere's shortcuts panel to "select find box."
+sleep 10
+Send +{backspace} ;deletes the search text so that the bin returns to normal view with all SFX visible.
+sleep 10
+MouseMove, %xpos%, %ypos%, 0 ;move mouse back to original coordinates.
+
+sleep 20
+tooltip, so did that work?
+;msgbox, clicked, mouse should be back at original coordinates.
+
+
+
+;send ^!+4 ;select program monitor
+sleep 10
+;send ^!+3 ;select timeline
+sleep 10
+send ^+9 ;my shortcut for "assign source assignment preset 4" in Premiere. The preset has V3 and A4 selected as sources. I may end up only using F18, since it does not use the CTRL and SHIFT keys, which can cause problems sometimes.
+sleep 50
+Send ^/ ;CTRL FORWARD SLASH -- SET TO "OVERWRITE" in premiere. Premiere's default shortcut for "overwrite" is a period.  I use modifier keys for THIS, so that a period is never typed accidentally.
+sleep 30
+; Send mbutton ;this will MIDDLE CLICK to reselect whatever panel your cursor was hovering over before you engaged this function.
+send ^!+7 ;highlight effects panel
+sleep 30
+send ^!+3 ;this is set in premiere to highlight/switch to the timeline. important so that you aren't still stuck in the bin. If this is used more than once, it will unfortunately cycle thorugh all available sequences...
+tooltip,
+
+;---------------------------------------
+BlockInput, off
+BlockInput, MouseMoveOff
+sfxEnding:
+}
+;;end of insertTRn()
+
+;_____End Auto Intsert From Project Panel for transitions------
