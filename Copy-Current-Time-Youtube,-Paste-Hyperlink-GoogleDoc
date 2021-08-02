@@ -1,0 +1,15 @@
+;-----------CopyCurrentTimeYoutube,PasteHyperlinkGoogleDoc------------
+^!c::
+MouseClick, right, 200, 300
+MouseMove, 300, 400, 0
+MouseClick, left
+return
+
+^!v::
+Send, ^k
+Sleep 10 
+Send, ^v
+Send, {Enter}
+Sleep 10
+return
+;-----------CopyCurrentTimeYoutube,PasteHyperlinkGoogleDoc------------
