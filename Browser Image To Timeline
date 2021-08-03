@@ -20,7 +20,7 @@ Send, ^v
 Sleep 100
 Send, {Enter}
 Sleep 1500 ;due to premiere auto save after import
-Send, ^,
+Send, ^/
 return
 
 switchToPremiere(){
