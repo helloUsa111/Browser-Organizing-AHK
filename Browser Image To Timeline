@@ -1,5 +1,5 @@
 ;---------------BrowserImageToTimeline--------------
-^!+c::
+^!+s::
 MouseClick, right, 960, 500
 Sleep 10
 MouseMove, 965, 510, 0
