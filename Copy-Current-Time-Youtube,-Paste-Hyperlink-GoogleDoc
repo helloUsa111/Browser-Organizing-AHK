@@ -1,11 +1,17 @@
 ;-----------CopyCurrentTimeYoutube,PasteHyperlinkGoogleDoc------------
-^!c::
+^+c:: ;copy URL address
+Send, ^l
+Sleep 10
+Send, ^c
+return
+
+^!c:: ;copy YT video current time
 MouseClick, right, 200, 300
 MouseMove, 300, 400, 0
 MouseClick, left
 return
 
-^!v::
+^+v:: ;Paste as Hyperlink in Google Doc Text
 Send, ^k
 Sleep 10 
 Send, ^v
