@@ -1,0 +1,76 @@
+;-----Ripple Delete Time Selection------
+;Ripple Delete the selected area, deselect clip, clip moves to 3 second behind and starts auto playing to check the cut
+
+^x::
+Send, ^h ;Ripple delete time selection in Audition Shortcut
+sleep 50
+Send, g ;Deselect
+sleep 50
+Send, j
+sleep 80
+Send, j
+sleep 80
+Send, j
+sleep 80
+Send, j
+sleep 80
+Send, j
+sleep 80
+Send, j
+sleep 80
+Send, j
+sleep 80
+Send, j
+sleep 1000 ;for checking the cut
+Send, k
+sleep 50
+Send, l
+sleep 50
+Send, l
+sleep 50
+return
+
+;-----Ripple Delete Time Selection------
+
+
+
+;--------------Cut clip at Playhead---------------
+#IfWinActive ahk_exe Adobe Audition.exe
+^e::
+Send, ^!t ;select clips under playhead
+sleep 50
+Send, ^k ;I set split at ctrl+k
+sleep 50
+return
+;--------------Audition Ripple Trim To Playhead---------------
+
+
+
+
+;--------------Audition Ripple Trim To Playhead---------------
+#IfWinActive ahk_exe Adobe Audition.exe
+q::
+Send, ^!t ;select clips under playhead
+sleep 50
+Send, x ;I set Trim In Point to playhead-x
+sleep 50
+Send, ^f ;Ripple delete gap in selected track=ctrl+f
+sleep 200
+Send, !{left}
+return
+;--------------Audition Ripple Trim To Playhead---------------
+
+
+
+;--------------Audition Ripple Trim To Playhead---------------
+#IfWinActive ahk_exe Adobe Audition.exe
+w::
+Send, ^!t
+sleep 50
+Send, u ;I set Trim out Point to playhead = u
+sleep 50
+Send, ^f ;Ripple delete gap in selected track=ctrl+f
+sleep 50
+return
+;--------------Audition Ripple Trim To Playhead---------------
+;---------------ENd of Audition Shortcuts-----------------------
