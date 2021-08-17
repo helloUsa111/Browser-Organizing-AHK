@@ -1,0 +1,16 @@
+;----------------------Overwrite video clip only------------------------------------------------------
+#IfWinActive ahk_exe Adobe Premiere Pro.exe
+.::
+Send, ^/ ;Overwrite Ctrl+/
+sleep 100
+Send, ^!+3
+sleep 10
+Send, ^p
+sleep 10
+Send, ^{up}
+sleep 10
+Send, {delete}
+sleep 10
+Send, ^p
+return
+;----------------------Overwrite video clip only------------------------------------------------------
