@@ -1,0 +1,41 @@
+;----------------------Lock-Unlock Video Track 1+2, Audio Track 1-----------------------------------------------
+#IfWinActive ahk_exe Adobe Premiere Pro.exe
+!x::
+lockUnlockTrack1()
+{
+BlockInput, On ;blocks keyboard and mouse input... I think.
+SetKeyDelay, 0
+sendinput ^!+3 ;highlights the timelinw
+sleep 20
+sendinput ^!u
+
+sleep 20
+MouseGetPos, xpos, ypos
+ControlGetPos, X, Y, Width, Height
+X := X+390 ;for 21' LG monitor
+Y := Y+620 ;change these variables to match the icon's position on your screen
+MouseMove, X, Y, 0
+MouseClick, left
+MouseMove, %xpos%, %ypos%, 0
+
+sleep 20
+MouseGetPos, xpos, ypos
+ControlGetPos, X, Y, Width, Height
+X := X+390 ;for 21' LG monitor
+Y := Y+650 ;change these variables to match the icon's position on your screen
+MouseMove, X, Y, 0
+MouseClick, left
+MouseMove, %xpos%, %ypos%, 0
+
+sleep 20
+MouseGetPos, xpos, ypos
+ControlGetPos, X, Y, Width, Height
+X := X+390 ;for 21' LG monitor
+Y := Y+700 ;for 21' LG monitor
+MouseMove, X, Y, 0
+MouseClick, left
+MouseMove, %xpos%, %ypos%, 0
+
+BlockInput, Off
+}
+;----------------------Lock-Unlock Video Track 1+2, Audio Track 1-----------------------------------------------
