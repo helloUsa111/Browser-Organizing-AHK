@@ -56,13 +56,12 @@ WinGetClass, class, ahk_id %Window%
  
 ControlGetPos, XX, YY, Width, Height, %classNN%, ahk_class %class%, SubWindow, SubWindow 
 
-MouseMove, XX-290, YY+5, 0 ;-----------------------moves cursor onto the magnifying glass
-;msgbox, should be in the center of the magnifying glass now.
+MouseMove, XX-290, YY+5, 0 ;mouse in magnifying glass, for HP 24'  XX-440, YY+10
 sleep 25
 Send %item%
 
 sleep 50
-MouseMove, 50, 65, 0, R ;
+MouseMove, 50, 65, 0, R ; for HP 24' MouseMove, 468, 63, 0, R 
 ;msgbox, The cursor should be directly on top of the preset's icon. `n If not, the script needs modification.
 
 sleep 25
