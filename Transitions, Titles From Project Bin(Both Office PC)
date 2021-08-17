@@ -1,7 +1,7 @@
-;_____Start Auto Intsert From Project Panel for transitions------
+;---------------------Start Auto Intsert From Project Panel for transitions----------------
+
 ;Lock video and audio tracks, and empty video-audio Track 3 when applying auto transitions
 
-;-----------Transitions-------------
 F5::insertTRn("01_Lightleaks")
 F6::insertTRn("02_ZoomIn")
 F7::insertTRn("03_Zoomout")
@@ -14,8 +14,6 @@ F11::insertTRn("07_PanLeft")
 ^!numpad3::insertTRn("10_Glitch_Invert")
 ^!numpad4::insertTRn("12_Glitch_BadSignal")
 ^!numpad5::insertTRn("14_Glitch_Magnify_smooth")
-
-;-----------Titles, Lowerthirds, and Quotes-------------
 F1::insertTRn("UsamaT1")
 F2::insertTRn("UsamaT2")
 F3::insertTRn("UsamaT3")
@@ -33,6 +31,8 @@ F4::insertTRn("UsamaT4")
 #IfWinActive ahk_exe Adobe Premiere Pro.exe
 insertTRn(leSound)
 {
+lockUnlockTrack1()
+
 ifWinNotActive ahk_exe Adobe Premiere Pro.exe
 	goto sfxEnding
 ;keyShower(leSound, "insertTRn")
@@ -50,28 +50,32 @@ blockinput, MouseMove
 BlockInput, On
 SetKeyDelay, 0 ;for instant writing of text
 MouseGetPos, xpos, ypos
+sleep 30
 send ^+x ;ctrl shift x -- shortcut in premiere for "remove in/out points.
+sleep 30
+send +{Left}
+sleep 30
+send +{Left}
 sleep 30
 send ^+9 ;ctrl shift 6 - source assignment preset 4. (sets it to A3.)
 sleep 30
 
-send ^!+1 ;CTRL ALT SHIFT 1 -- ;shortcut for application>window>project (highlights a single bin. In my case, it's on my left monitor.)
+;msgbox, you in the panel now?
+send ^!+1 ;CTRL ALT SHIFT 1 -- ;shortcut for application>window>project
 tooltip, waiting for premiere to select that bin....
 sleep 40
 ;msgbox how about naow?
-
-Send ^b ;CTRL B -- set this in premiere's shortcuts panel to "select find box." Make sure there are NO OTHER conflicting shortcuts on this key, like "create new bin," which would stop it from working.
-; send +{backspace} ;to delete anything that might be written in the bin, so that the caret coordinates are always accurate.
-
+Send ^b ;CTRL B - select find box.
 ;msgbox, okay now what
 
-Send %leSound% ;types in the name of the sound effect you want - should do so instantaneously.
+Send %leSound% 
 tooltip, waiting for premiere to load......
-send ^+9 ;source assignment preset 4, again.
+send ^+9 ;source assignment preset 4, 
 sleep 600 ;we are waiting for the search to complete....
-MouseMove, 95, 230, 0 ;MouseMove, 100, 200 for PC 2 (i710th gen, 20' Monitor)
+;-----------------------------------------------------------------------------------------------------------
+MouseMove, 100, 240, 0 ;MouseMove, 95, 230, 0 for 24' HP
 ;msgbox, wheres de mouse?
--------------------------------------------------------------------
+;-----------------------------------------------------------------------------------------------------------
 MouseClick, left
 tooltip, CLICK!!!
 sleep 10
@@ -82,26 +86,20 @@ sleep 10
 Send +{backspace} ;deletes the search text so that the bin returns to normal view with all SFX visible.
 sleep 10
 MouseMove, %xpos%, %ypos%, 0 ;move mouse back to original coordinates.
-
 sleep 20
 tooltip, so did that work?
-;msgbox, clicked, mouse should be back at original coordinates.
 
-
-
-;send ^!+4 ;select program monitor
 sleep 10
-;send ^!+3 ;select timeline
 sleep 10
-send ^+9 ;my shortcut for "assign source assignment preset 4" in Premiere. The preset has V3 and A4 selected as sources. I may end up only using F18, since it does not use the CTRL and SHIFT keys, which can cause problems sometimes.
+send ^+9 ;my shortcut for "assign source assignment preset 4"
 sleep 50
-Send ^/ ;CTRL FORWARD SLASH -- SET TO "OVERWRITE" in premiere. Premiere's default shortcut for 
+Send ^/ ;CTRL FORWARD SLASH -- SET TO "OVERWRITE" in premiere. 
 sleep 30
 send ^!+7 ;highlight effects panel
 sleep 30
-send ^!+3 ;this is set in premiere to highlight/switch to the timeline. important so that you aren't still stuck in the bin. If this is used more than once, it will unfortunately cycle thorugh all available sequences...
+send ^!+3 ;highlight/switch to the timeline. 
 tooltip,
-
+lockUnlockTrack1()
 ;---------------------------------------
 BlockInput, off
 BlockInput, MouseMoveOff
