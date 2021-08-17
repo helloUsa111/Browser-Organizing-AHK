@@ -1,0 +1,19 @@
+;------------------------------EFFECT CONTROLS PANEL ---Motion ICON CLICKER----------------------------
+#IfWinActive ahk_exe Adobe Premiere Pro.exe
+^!x::
+clickTransformIcon2()
+{
+BlockInput, On ;blocks keyboard and mouse input... I think.
+SetKeyDelay, 0
+sendinput ^!+5 ;highlights the effect controls
+sleep 20
+MouseGetPos, xpos, ypos
+ControlGetPos, X, Y, Width, Height, DroverLord - Window Class3, ahk_class Premiere Pro, DroverLord - TabPanel Window ;This is the Effect controls panel. Info gotten from Window Spy.
+X := X+80 ;X+250 for HP 24' minitor
+Y := Y+70 ;change these variables to match the icon's position on your screen
+MouseMove, X, Y, 0
+MouseClick, left
+MouseMove, %xpos%, %ypos%, 0
+BlockInput, Off
+}
+;------------------------------EFFECT CONTROLS PANEL ---Motion ICON CLICKER----------------------------
